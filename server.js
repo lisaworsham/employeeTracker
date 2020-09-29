@@ -1,6 +1,7 @@
 require('dotenv').config()
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var seeTable = require("console.table");
 
 
 // create the connection information for the sql database
@@ -69,3 +70,49 @@ function start() {
             }
         })
 }
+
+function addDepartment(){
+    inquirer
+        .prompt({
+            name: "addDepartment",
+            type: "input",
+            message: "What would you like to name your new department?"
+        })
+        .then(function(answer){
+            var query = "INSERT INTO department (name) VALUES (?)"; 
+            connection.query(query, answer.addDepartment,
+                function(err, res) {
+                    if (err) throw err;
+                    viewDepartments();
+                })
+        })
+};
+
+function addRole(){
+
+};
+
+function addEmployee(){
+
+};
+
+function viewDepartments(){
+    var query = "SELECT * FROM department"
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        start();
+    })
+};
+
+function viewRoles(){
+
+};
+
+function viewEmployees(){
+
+};
+
+function updateEmployee(){
+
+};
