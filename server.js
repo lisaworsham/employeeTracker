@@ -106,13 +106,23 @@ function viewDepartments(){
 };
 
 function viewRoles(){
-
+    var query = "SELECT * FROM role"
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        start();
+    })
 };
 
 function viewEmployees(){
-
+    var query = "SELECT * FROM employee"
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.table(res);
+        start();
+    })
 };
 
 function updateEmployee(){
-
+// run update query and then set it.
 };
