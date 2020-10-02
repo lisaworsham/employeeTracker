@@ -79,7 +79,7 @@ function addDepartment(){
             message: "What would you like to name your new department?"
         })
         .then(function(answer){
-            var query = "INSERT INTO department (name) VALUES (?)"; 
+            var query = "INSERT INTO department (department_name) VALUES (?)"; 
             connection.query(query, answer.addDepartment,
                 function(err, res) {
                     if (err) throw err;
@@ -146,13 +146,13 @@ function addEmployee(){
             {
                 name: "addManager",
                 type: "input",
-                message: "Input the manager ID on who will they report to, if any? If they are a manager, input 'null':"
+                message: "Input the manager ID on who will they report to?"
             }
         ])
         .then(function(answer) {
-            var query = "INSERT INTO role (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)"
+            var query = "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)"
             connection.query(query,
-                [answer.addFirstName, answer.addLastName, answer.addRole, answer.addManager], 
+                [answer.addFirstName, answer.addLastName, parseInt(answer.addRole), parseInt(answer.addManager)], 
                 function(err, res) {
                     if (err) throw err;
                     console.log("Employee created successfully!")
